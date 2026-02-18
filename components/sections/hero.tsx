@@ -55,9 +55,11 @@ export default function Hero() {
                             Contact Me
                         </Button>
                     </Link>
-                    <Button variant="ghost" size="lg">
-                        Download CV <Download className="ml-2 h-4 w-4" />
-                    </Button>
+                    <a href="/Hansanie Neththasinghe - Resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <Button variant="ghost" size="lg">
+                            Download CV <Download className="ml-2 h-4 w-4" />
+                        </Button>
+                    </a>
                 </div>
             </motion.div>
         </section>
