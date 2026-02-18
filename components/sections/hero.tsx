@@ -8,9 +8,10 @@ import Link from "next/link";
 export default function Hero() {
     return (
         <section className="min-h-[85vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-            {/* Background Gradient Blob */}
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] -z-10" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10" />
+            {/* Background Gradient Blobs */}
+            <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-indigo-400/20 rounded-full blur-[120px] -z-10" />
+            <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-violet-400/20 rounded-full blur-[120px] -z-10" />
+            <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-300/15 rounded-full blur-[100px] -z-10" />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -19,16 +20,25 @@ export default function Hero() {
                 className="space-y-6 max-w-3xl"
             >
                 <div className="space-y-2">
-                    <h2 className="text-sm md:text-base font-medium text-primary tracking-wide uppercase">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 border border-indigo-200 text-indigo-700 text-sm font-medium mb-4"
+                    >
+                        <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+                        Available for opportunities
+                    </motion.div>
+                    <h2 className="text-sm md:text-base font-semibold text-indigo-500 tracking-widest uppercase">
                         Hansanie Neththasinghe
                     </h2>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
                         Software Engineer <br />
-                        <span className="text-muted-foreground">& Full Stack Developer</span>
+                        <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">& Full Stack Developer</span>
                     </h1>
                 </div>
 
-                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
                     Passionate undergraduate specializing in building modern web applications and scalable solutions.
                     Experienced in MERN stack, DevOps, and cloud technologies.
                 </p>

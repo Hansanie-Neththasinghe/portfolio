@@ -48,19 +48,19 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-6 py-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="space-y-4">
                 <h1 className="text-4xl font-bold tracking-tight">Featured Projects</h1>
-                <p className="text-muted-foreground text-lg">
+                <p className="text-foreground/60 text-lg">
                     A collection of my academic and personal projects showcasing my technical expertise.
                 </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
-                    <Card key={index} className="flex flex-col h-full hover:border-primary/50 transition-colors">
+                    <Card key={index} className="flex flex-col h-full hover:border-indigo-400 transition-colors">
                         <CardHeader>
                             <div className="flex justify-between items-start gap-2">
                                 <CardTitle className="text-xl leading-tight">{project.title}</CardTitle>
                                 {project.highlight && (
-                                    <Badge variant="secondary" className="text-[10px] h-5">{project.highlight}</Badge>
+                                    <Badge variant="default" className="text-[10px] h-5 shrink-0">{project.highlight}</Badge>
                                 )}
                             </div>
                         </CardHeader>
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
                             </CardDescription>
                             <div className="flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
-                                    <Badge key={tag} variant="outline" className="text-xs bg-muted/40">
+                                    <Badge key={tag} variant="secondary" className="text-xs">
                                         {tag}
                                     </Badge>
                                 ))}

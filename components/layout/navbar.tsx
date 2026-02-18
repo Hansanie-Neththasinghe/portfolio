@@ -32,13 +32,13 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                 scrolled
-                    ? "bg-background/80 backdrop-blur-md border-b border-border py-4"
+                    ? "bg-[#0f0e1a]/90 backdrop-blur-xl border-b border-indigo-900/60 shadow-sm shadow-indigo-950 py-4"
                     : "bg-transparent py-6"
             )}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold tracking-tight text-primary">
-                    Hansanie<span className="text-foreground">.dev</span>
+                <Link href="/" className="text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                    Hansanie<span className="text-foreground/70">.dev</span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -47,16 +47,16 @@ export default function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider"
+                            className="text-foreground/60 hover:text-indigo-600 transition-colors font-medium text-sm uppercase tracking-wider"
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <div className="flex items-center space-x-4 ml-4 border-l pl-4 border-border">
-                        <Link href="https://github.com" target="_blank" className="text-muted-foreground hover:text-foreground">
+                    <div className="flex items-center space-x-4 ml-4 border-l pl-4 border-indigo-100">
+                        <Link href="https://github.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
                             <Github size={20} />
                         </Link>
-                        <Link href="https://linkedin.com" target="_blank" className="text-muted-foreground hover:text-foreground">
+                        <Link href="https://linkedin.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
                             <Linkedin size={20} />
                         </Link>
                     </div>
@@ -64,7 +64,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden text-foreground"
+                    className="md:hidden text-foreground/70 hover:text-indigo-600 transition-colors"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -78,28 +78,28 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden"
+                        className="absolute top-full left-0 right-0 bg-[#0f0e1a]/95 backdrop-blur-xl border-b border-indigo-900/60 shadow-lg md:hidden"
                     >
                         <div className="flex flex-col py-8 px-6 space-y-4">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                                    className="text-lg font-medium text-white/80 hover:text-indigo-400 transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="flex space-x-6 pt-4 mt-4 border-t border-border">
+                            <div className="flex space-x-6 pt-4 mt-4 border-t border-indigo-900/60">
                                 <Link href="https://github.com" target="_blank">
-                                    <Github className="text-muted-foreground hover:text-foreground" />
+                                    <Github className="text-foreground/50 hover:text-indigo-600 transition-colors" />
                                 </Link>
                                 <Link href="https://linkedin.com" target="_blank">
-                                    <Linkedin className="text-muted-foreground hover:text-foreground" />
+                                    <Linkedin className="text-foreground/50 hover:text-indigo-600 transition-colors" />
                                 </Link>
                                 <Link href="mailto:hansanie@example.com">
-                                    <Mail className="text-muted-foreground hover:text-foreground" />
+                                    <Mail className="text-foreground/50 hover:text-indigo-600 transition-colors" />
                                 </Link>
                             </div>
                         </div>
