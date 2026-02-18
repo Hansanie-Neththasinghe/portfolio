@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -32,7 +33,7 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                 scrolled
-                    ? "bg-[#0f0e1a]/90 backdrop-blur-xl border-b border-indigo-900/60 shadow-sm shadow-indigo-950 py-4"
+                    ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-4"
                     : "bg-transparent py-6"
             )}
         >
@@ -52,13 +53,14 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <div className="flex items-center space-x-4 ml-4 border-l pl-4 border-indigo-100">
+                    <div className="flex items-center space-x-4 ml-4 border-l pl-4 border-foreground/10">
                         <Link href="https://github.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
                             <Github size={20} />
                         </Link>
                         <Link href="https://linkedin.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
                             <Linkedin size={20} />
                         </Link>
+                        <ModeToggle />
                     </div>
                 </div>
 
@@ -78,20 +80,20 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-full left-0 right-0 bg-[#0f0e1a]/95 backdrop-blur-xl border-b border-indigo-900/60 shadow-lg md:hidden"
+                        className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg md:hidden"
                     >
                         <div className="flex flex-col py-8 px-6 space-y-4">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-lg font-medium text-white/80 hover:text-indigo-400 transition-colors"
+                                    className="text-lg font-medium text-foreground/80 hover:text-indigo-600 transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="flex space-x-6 pt-4 mt-4 border-t border-indigo-900/60">
+                            <div className="flex space-x-6 pt-4 mt-4 border-t border-border">
                                 <Link href="https://github.com" target="_blank">
                                     <Github className="text-foreground/50 hover:text-indigo-600 transition-colors" />
                                 </Link>
@@ -101,6 +103,9 @@ export default function Navbar() {
                                 <Link href="mailto:hansanie@example.com">
                                     <Mail className="text-foreground/50 hover:text-indigo-600 transition-colors" />
                                 </Link>
+                                <div className="pt-1">
+                                    <ModeToggle />
+                                </div>
                             </div>
                         </div>
                     </motion.div>
