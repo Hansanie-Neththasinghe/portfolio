@@ -9,37 +9,51 @@ const projects = [
         title: "Punchi-Pasala",
         description: "An interactive educational web application designed to identify learning difficulties of Deaf and Mute students in Sri Lanka. Features guided sign language instructions and webcam inputs identified by ML models.",
         tags: ["React.js", "Node.js", "Python", "Tensorflow", "AWS"],
-        highlight: "Research Project"
+        highlight: "Research Project",
+        codeUrl: "https://github.com/KCGSPerera/R25-009",
+        demoUrl: "https://hansanie-neththasinghe.github.io/punchi-pasala/",
     },
     {
         title: "EV Charging Station Booking",
         description: "A centralized web service with client interfaces for web and mobile. Features booking management and Google Map integration.",
-        tags: ["C#", "React", "Android", "Google Maps"]
+        tags: ["C#", "React", "Android", "Google Maps"],
+        codeUrl: "#",
+        demoUrl: "#",
     },
     {
         title: "Waste Management System",
         description: "Automated garbage collection scheduling based on bin weight limits. Includes route optimization using Google Maps and vulnerability testing with ZAP.",
-        tags: ["MERN Stack", "Google Maps", "ZAP"]
+        tags: ["MERN Stack", "Google Maps", "ZAP"],
+        codeUrl: "#",
+        demoUrl: "#",
     },
     {
         title: "E-Commerce Backend",
         description: "Microservices architecture backend with automated CI/CD pipelines and cloud deployment.",
-        tags: ["Node.js", "Microservices", "Docker", "AWS ECS", "CI/CD"]
+        tags: ["Node.js", "Microservices", "Docker", "AWS ECS", "CI/CD"],
+        codeUrl: "#",
+        demoUrl: "#",
     },
     {
         title: "Code Complexity Tool",
         description: "Tool to calculate Cognitive Functional Size and Code Complexity of Java code segments. Features file upload and PDF report generation.",
-        tags: ["MERN Stack", "Monaco Editor"]
+        tags: ["MERN Stack", "Monaco Editor"],
+        codeUrl: "#",
+        demoUrl: "#",
     },
     {
         title: "Planaroma",
         description: "Online event planner platform for users to organize and manage events centrally.",
-        tags: ["Java", "MVC", "MySQL", "Bootstrap"]
+        tags: ["Java", "MVC", "MySQL", "Bootstrap"],
+        codeUrl: "#",
+        demoUrl: "#",
     },
     {
         title: "Rheumatic Care App",
         description: "Mobile application to manage patients suffering from rheumatic disease in a clinic.",
-        tags: ["Flutter", "Node.js", "MongoDB"]
+        tags: ["Flutter", "Node.js", "MongoDB"],
+        codeUrl: "#",
+        demoUrl: "#",
     }
 ];
 
@@ -78,12 +92,14 @@ export default function ProjectsPage() {
                         </CardContent>
                         <CardFooter className="pt-0 gap-2">
                             <Button variant="outline" size="sm" className="w-full text-xs" asChild>
-                                <Link href="#">
+                                {/* <Link href="#"> */}
+                                <Link href={project.codeUrl} target="_blank">
                                     <Github className="mr-2 h-3 w-3" /> Code
                                 </Link>
                             </Button>
                             <Button size="sm" className="w-full text-xs" asChild>
-                                <Link href="#">
+                                {/* <Link href="#"> */}
+                                <Link href={project.demoUrl} target="_blank">
                                     <ExternalLink className="mr-2 h-3 w-3" /> Demo
                                 </Link>
                             </Button>
