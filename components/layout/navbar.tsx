@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,7 @@ const navLinks = [
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,32 +35,47 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                 scrolled
-                    ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-4"
-                    : "bg-transparent py-6"
+                    ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-3"
+                    : "bg-transparent py-5"
             )}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                    Hansanie<span className="text-foreground/70">.dev</span>
+                <Link href="/" className="text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
+                    Hansanie<span className="text-foreground/75 font-medium">.dev</span>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-foreground/60 hover:text-indigo-600 transition-colors font-medium text-sm uppercase tracking-wider"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                <div className="hidden md:flex items-center space-x-1">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={cn(
+                                    "relative px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 rounded-full",
+                                    isActive
+                                        ? "text-indigo-600 dark:text-indigo-400"
+                                        : "text-foreground/60 hover:text-foreground"
+                                )}
+                            >
+                                {isActive && (
+                                    <motion.span
+                                        layoutId="activeNav"
+                                        className="absolute inset-0 bg-indigo-500/10 dark:bg-indigo-400/10 rounded-full -z-10 border border-indigo-500/20 dark:border-indigo-400/20"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    />
+                                )}
+                                {link.name}
+                            </Link>
+                        );
+                    })}
                     <div className="flex items-center space-x-4 ml-4 border-l pl-4 border-foreground/10">
-                        <Link href="https://github.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
-                            <Github size={20} />
+                        <Link href="https://github.com" target="_blank" className="text-foreground/50 hover:text-indigo-500 hover:scale-110 transition-all">
+                            <Github size={18} />
                         </Link>
-                        <Link href="https://linkedin.com" target="_blank" className="text-foreground/50 hover:text-indigo-600 transition-colors">
-                            <Linkedin size={20} />
+                        <Link href="https://linkedin.com" target="_blank" className="text-foreground/50 hover:text-indigo-500 hover:scale-110 transition-all">
+                            <Linkedin size={18} />
                         </Link>
                         <ModeToggle />
                     </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import FloatingParticles from "@/components/ui/floating-particles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <FloatingParticles />
           <Navbar />
           <main className="flex-grow pt-20 px-4 sm:px-6 lg:px-8">
             {children}
@@ -37,3 +39,4 @@ export default function RootLayout({
     </html>
   );
 }
+

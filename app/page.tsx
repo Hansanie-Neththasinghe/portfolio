@@ -1,5 +1,8 @@
+"use client";
+
 import Hero from "@/components/sections/hero";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight, Briefcase, Code2, Database, Layout, Server, Smartphone, Terminal, User, GraduationCap, ExternalLink, Github } from "lucide-react";
 
 // ── Mini data (mirrors the full pages) ──────────────────────────────────────
@@ -43,12 +46,25 @@ function SectionHeader({ title, subtitle, href, linkLabel }: { title: string; su
       </div>
       <Link
         href={href}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-500 hover:text-indigo-400 transition-colors shrink-0 group"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors shrink-0 group"
       >
         {linkLabel}
         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
       </Link>
     </div>
+  );
+}
+
+function RevealContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
@@ -62,190 +78,214 @@ export default function Home() {
 
       {/* ── About Snapshot ── */}
       <section className="px-6 py-20 border-t border-border">
-        <SectionHeader
-          title="About Me"
-          subtitle="Who I am and what drives me"
-          href="/about"
-          linkLabel="Full bio"
-        />
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Bio card */}
-          <div className="md:col-span-2 rounded-2xl border border-border bg-card p-6 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-md">
-                <User className="h-5 w-5" />
-              </div>
-              <h3 className="font-semibold text-lg">Hansanie Neththasinghe</h3>
-            </div>
-            <p className="text-foreground/60 leading-relaxed">
-              Final-year Software Engineering undergraduate (graduating March 2026) with hands-on
-              experience in full-stack web development, DevOps, and cloud technologies. Self-motivated,
-              eager to tackle real-world challenges, and currently seeking an Associate Software Engineer role.
-            </p>
-            <div className="flex flex-wrap gap-2 mt-auto pt-2">
-              {["MERN Stack", "DevOps", "Cloud", "Agile", "Full Stack"].map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-50/60 text-indigo-700 border border-indigo-200">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Education card */}
-          <div className="rounded-2xl border border-border bg-card p-6 flex flex-col gap-3">
-            <div className="flex items-center gap-3 mb-1">
-              <div className="p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 text-white shadow-md">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <h3 className="font-semibold">Education</h3>
-            </div>
-            <div className="border-l-2 border-indigo-300 pl-4 space-y-1">
-              <p className="font-semibold text-sm text-foreground">BSc (Hons) Information Technology</p>
-              <p className="text-xs text-indigo-500 font-medium">Specializing in Software Engineering</p>
-              <p className="text-xs text-foreground/50">SLIIT · Jun 2021 – Present</p>
-              <p className="text-xs text-foreground/40">Weighted GPA: 3.61</p>
-            </div>
-            <div className="mt-auto pt-3 border-t border-border">
-              <p className="text-xs text-foreground/50 font-medium uppercase tracking-wider mb-2">Dean&apos;s List</p>
-              <div className="flex flex-wrap gap-1.5">
-                {["2022", "2023", "2025"].map((y) => (
-                  <span key={y} className="px-2.5 py-0.5 rounded-full text-xs font-semibold border border-amber-400 bg-amber-50 text-amber-700">{y}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Experience Snapshot ── */}
-      <section className="px-6 py-20 border-t border-border">
-        <SectionHeader
-          title="Experience"
-          subtitle="My professional journey"
-          href="/experience"
-          linkLabel="Full experience"
-        />
-        <div className="relative rounded-2xl border border-indigo-200 bg-card overflow-hidden">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-violet-500" />
-          <div className="p-6 pl-8 flex flex-col md:flex-row md:items-start justify-between gap-6">
-            <div className="space-y-3 flex-1">
+        <RevealContainer>
+          <SectionHeader
+            title="About Me"
+            subtitle="Who I am and what drives me"
+            href="/about"
+            linkLabel="Full bio"
+          />
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Bio card */}
+            <div className="md:col-span-2 rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 flex flex-col gap-4 hover:border-indigo-500/30 transition-all duration-300">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-md">
-                  <Briefcase className="h-4 w-4" />
+                <div className="p-2.5 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-md">
+                  <User className="h-5 w-5" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Full Stack Developer Internship</h3>
-                  <p className="text-sm text-foreground/60">Coltex Biz Solutions Pvt. Ltd.</p>
-                </div>
+                <h3 className="font-semibold text-lg">Hansanie Neththasinghe</h3>
               </div>
-              <p className="text-foreground/60 text-sm leading-relaxed">
-                Built full-stack applications (Restaurant, Service Station & Pawning Management Systems) using the MERN stack. Designed RESTful APIs, responsive UIs, and collaborated in Agile teams.
+              <p className="text-foreground/60 leading-relaxed">
+                Final-year Software Engineering undergraduate (graduating March 2026) with hands-on
+                experience in full-stack web development, DevOps, and cloud technologies. Self-motivated,
+                eager to tackle real-world challenges, and currently seeking an Associate Software Engineer role.
               </p>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {["React.js", "Node.js", "MongoDB", "Express", "Figma", "Agile"].map((tech) => (
-                  <span key={tech} className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-200">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <span className="shrink-0 self-start px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
-              July 2024 – June 2025
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Skills Snapshot ── */}
-      <section className="px-6 py-20 border-t border-border">
-        <SectionHeader
-          title="Technical Skills"
-          subtitle="Technologies I work with"
-          href="/skills"
-          linkLabel="All skills"
-        />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {skillHighlights.map((cat, i) => (
-            <div
-              key={i}
-              className="group rounded-2xl border border-border bg-card p-4 flex flex-col items-center text-center gap-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
-            >
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${cat.gradient} text-white shadow-md`}>
-                {cat.icon}
-              </div>
-              <p className="text-sm font-semibold text-foreground">{cat.label}</p>
-              <div className="flex flex-col gap-1 w-full">
-                {cat.skills.map((s) => (
-                  <span key={s} className="text-xs text-foreground/50">{s}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Projects Snapshot ── */}
-      <section className="px-6 py-20 border-t border-border">
-        <SectionHeader
-          title="Featured Projects"
-          subtitle="A selection of my recent work"
-          href="/projects"
-          linkLabel="All projects"
-        />
-        <div className="grid md:grid-cols-3 gap-6">
-          {featuredProjects.map((project, i) => (
-            <div
-              key={i}
-              className="group rounded-2xl border border-border bg-card p-6 flex flex-col gap-4 hover:border-indigo-400 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-100/40 transition-all duration-300"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="font-semibold text-foreground leading-tight">{project.title}</h3>
-                {project.highlight && (
-                  <span className="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
-                    {project.highlight}
-                  </span>
-                )}
-              </div>
-              <p className="text-sm text-foreground/60 leading-relaxed flex-1">{project.description}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-200">
+              <div className="flex flex-wrap gap-2 mt-auto pt-2">
+                {["MERN Stack", "DevOps", "Cloud", "Agile", "Full Stack"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/25 dark:border-indigo-400/25"
+                  >
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex gap-2 pt-1">
-                <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-border text-xs font-medium text-foreground/60 hover:border-indigo-300 hover:text-indigo-600 transition-colors">
-                  <Github className="h-3.5 w-3.5" /> Code
-                </Link>
-                <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 text-xs font-medium text-white hover:from-indigo-600 hover:to-violet-600 transition-colors">
-                  <ExternalLink className="h-3.5 w-3.5" /> Demo
-                </Link>
+            </div>
+
+            {/* Education card */}
+            <div className="rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 flex flex-col gap-3 hover:border-indigo-500/30 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-1">
+                <div className="p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 text-white shadow-md">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <h3 className="font-semibold">Education</h3>
+              </div>
+              <div className="border-l-2 border-indigo-500/50 pl-4 space-y-1">
+                <p className="font-semibold text-sm text-foreground">BSc (Hons) Information Technology</p>
+                <p className="text-xs text-indigo-500 dark:text-indigo-400 font-medium">Specializing in Software Engineering</p>
+                <p className="text-xs text-foreground/50">SLIIT · 2022 – 2025</p>
+                <p className="text-xs text-foreground/40">Weighted GPA: 3.61</p>
+              </div>
+              <div className="mt-auto pt-3 border-t border-border">
+                <p className="text-xs text-foreground/50 font-medium uppercase tracking-wider mb-2">Dean&apos;s List</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["2022", "2023", "2025"].map((y) => (
+                    <span
+                      key={y}
+                      className="px-2.5 py-0.5 rounded-full text-xs font-semibold border border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    >
+                      {y}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </RevealContainer>
+      </section>
+
+      {/* ── Experience Snapshot ── */}
+      <section className="px-6 py-20 border-t border-border">
+        <RevealContainer>
+          <SectionHeader
+            title="Experience"
+            subtitle="My professional journey"
+            href="/experience"
+            linkLabel="Full experience"
+          />
+          <div className="relative rounded-2xl border border-indigo-500/20 dark:border-indigo-400/20 bg-card/60 backdrop-blur-sm overflow-hidden hover:border-indigo-500/40 transition-all duration-300">
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-violet-500" />
+            <div className="p-6 pl-8 flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="space-y-3 flex-1">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-md">
+                    <Briefcase className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Full Stack Developer Internship</h3>
+                    <p className="text-sm text-foreground/60">Coltex Biz Solutions Pvt. Ltd.</p>
+                  </div>
+                </div>
+                <p className="text-foreground/60 text-sm leading-relaxed">
+                  Built full-stack applications (Restaurant, Service Station & Pawning Management Systems) using the MERN stack. Designed RESTful APIs, responsive UIs, and collaborated in Agile teams.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {["React.js", "Node.js", "MongoDB", "Express", "Figma", "Agile"].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-400/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <span className="shrink-0 self-start px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-400/20">
+                July 2024 – June 2025
+              </span>
+            </div>
+          </div>
+        </RevealContainer>
+      </section>
+
+      {/* ── Skills Snapshot ── */}
+      <section className="px-6 py-20 border-t border-border">
+        <RevealContainer>
+          <SectionHeader
+            title="Technical Skills"
+            subtitle="Technologies I work with"
+            href="/skills"
+            linkLabel="All skills"
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {skillHighlights.map((cat, i) => (
+              <div
+                key={i}
+                className="group rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-4 flex flex-col items-center text-center gap-3 hover:-translate-y-1.5 hover:shadow-xl hover:border-indigo-500/30 transition-all duration-300"
+              >
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${cat.gradient} text-white shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                  {cat.icon}
+                </div>
+                <p className="text-sm font-semibold text-foreground">{cat.label}</p>
+                <div className="flex flex-col gap-1 w-full">
+                  {cat.skills.map((s) => (
+                    <span key={s} className="text-xs text-foreground/50">{s}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </RevealContainer>
+      </section>
+
+      {/* ── Projects Snapshot ── */}
+      <section className="px-6 py-20 border-t border-border">
+        <RevealContainer>
+          <SectionHeader
+            title="Featured Projects"
+            subtitle="A selection of my recent work"
+            href="/projects"
+            linkLabel="All projects"
+          />
+          <div className="grid md:grid-cols-3 gap-6">
+            {featuredProjects.map((project, i) => (
+              <div
+                key={i}
+                className="group rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 flex flex-col gap-4 hover:border-indigo-500/40 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-semibold text-foreground leading-tight">{project.title}</h3>
+                  {project.highlight && (
+                    <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
+                      {project.highlight}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-foreground/60 leading-relaxed flex-1">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-400/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-2 pt-1">
+                  <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-border text-xs font-medium text-foreground/60 hover:border-indigo-500/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                    <Github className="h-3.5 w-3.5" /> Code
+                  </Link>
+                  <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 text-xs font-medium text-white hover:opacity-90 transition-opacity">
+                    <ExternalLink className="h-3.5 w-3.5" /> Demo
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </RevealContainer>
       </section>
 
       {/* ── CTA ── */}
       <section className="px-6 py-20 border-t border-border">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 p-12 text-center text-white">
-          {/* Decorative blobs */}
-          <div className="absolute top-[-30%] left-[-10%] w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-[-30%] right-[-10%] w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-          <div className="relative space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s Work Together</h2>
-            <p className="text-white/70 max-w-xl mx-auto text-lg">
-              I&apos;m currently open to new opportunities. If you have a project in mind or just want to connect, feel free to reach out!
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-white text-indigo-700 font-semibold hover:bg-indigo-50 transition-colors shadow-lg"
-            >
-              Get in Touch <ArrowRight className="h-4 w-4" />
-            </Link>
+        <RevealContainer>
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 p-12 text-center text-white shadow-xl">
+            {/* Decorative blobs */}
+            <div className="absolute top-[-30%] left-[-10%] w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-[-30%] right-[-10%] w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+            <div className="relative space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s Work Together</h2>
+              <p className="text-white/70 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+                I&apos;m currently open to new opportunities. If you have a project in mind or just want to connect, feel free to reach out!
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-white text-indigo-700 font-semibold hover:bg-indigo-50 transition-colors shadow-lg"
+              >
+                Get in Touch <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-        </div>
+        </RevealContainer>
       </section>
     </div>
   );
