@@ -3,7 +3,7 @@
 import Hero from "@/components/sections/hero";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Code2, Database, Layout, Server, Smartphone, Terminal, User, GraduationCap, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, Briefcase, Code2, Database, Layout, Server, Smartphone, Terminal, User, GraduationCap, ExternalLink, Github, BookOpen } from "lucide-react";
 
 // ── Mini data (mirrors the full pages) ──────────────────────────────────────
 
@@ -13,6 +13,7 @@ const featuredProjects = [
     description: "Interactive educational web app for Deaf & Mute students using ML-powered sign language recognition.",
     tags: ["React.js", "Node.js", "Python", "TensorFlow", "AWS"],
     highlight: "Research Project",
+    publicationUrl: "https://www.researchgate.net/publication/401232125_Identify_Dyscalculia_Dysgraphia_Learning_Disabilities_in_Deaf_and_Mute_Primary_Students_and_Help_to_Improve_Learning_Abilities",
   },
   {
     title: "EV Charging Station Booking",
@@ -251,6 +252,14 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
+                {/* Optional Publication Button */}
+                {project.publicationUrl && (
+                  <div className="pt-1">
+                    <Link href={project.publicationUrl} target="_blank" className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-colors">
+                      <BookOpen className="h-3.5 w-3.5" /> Publication
+                    </Link>
+                  </div>
+                )}
                 <div className="flex gap-2 pt-1">
                   <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-border text-xs font-medium text-foreground/60 hover:border-indigo-500/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     <Github className="h-3.5 w-3.5" /> Code

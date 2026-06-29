@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Code } from "lucide-react";
+import { Github, ExternalLink, Code, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 interface Project {
@@ -16,6 +16,7 @@ interface Project {
   highlight?: string;
   codeUrl: string;
   demoUrl: string;
+  publicationUrl?: string;
 }
 
 const projects: Project[] = [
@@ -27,6 +28,7 @@ const projects: Project[] = [
     highlight: "Research Project",
     codeUrl: "https://github.com/KCGSPerera/R25-009",
     demoUrl: "https://hansanie-neththasinghe.github.io/punchi-pasala/",
+    publicationUrl: "https://www.researchgate.net/publication/401232125_Identify_Dyscalculia_Dysgraphia_Learning_Disabilities_in_Deaf_and_Mute_Primary_Students_and_Help_to_Improve_Learning_Abilities",
   },
   {
     title: "EV Charging Station Booking",
@@ -176,17 +178,26 @@ export default function ProjectsPage() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="pt-0 gap-2 p-6 border-t border-border/20">
-                  <Button variant="outline" size="sm" className="w-full text-xs cursor-pointer border-border hover:bg-muted/40" asChild>
-                    <Link href={project.codeUrl} target="_blank">
-                      <Github className="mr-2 h-3.5 w-3.5" /> Code
-                    </Link>
-                  </Button>
-                  <Button size="sm" className="w-full text-xs cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white border-0" asChild>
-                    <Link href={project.demoUrl} target="_blank">
-                      <ExternalLink className="mr-2 h-3.5 w-3.5" /> Demo
-                    </Link>
-                  </Button>
+                <CardFooter className="pt-0 gap-2 p-6 border-t border-border/20 flex-wrap">
+                  {project.publicationUrl && (
+                    <Button variant="outline" size="sm" className="w-full text-xs cursor-pointer border-indigo-500/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10" asChild>
+                      <Link href={project.publicationUrl} target="_blank">
+                        <BookOpen className="mr-2 h-3.5 w-3.5" /> Publication
+                      </Link>
+                    </Button>
+                  )}
+                  <div className="flex w-full gap-2">
+                    <Button variant="outline" size="sm" className="flex-1 text-xs cursor-pointer border-border hover:bg-muted/40" asChild>
+                      <Link href={project.codeUrl} target="_blank">
+                        <Github className="mr-2 h-3.5 w-3.5" /> Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" className="flex-1 text-xs cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white border-0" asChild>
+                      <Link href={project.demoUrl} target="_blank">
+                        <ExternalLink className="mr-2 h-3.5 w-3.5" /> Demo
+                      </Link>
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             </motion.div>
