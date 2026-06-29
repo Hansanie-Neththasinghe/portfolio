@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Hansanie Neththasinghe | Software Engineer",
-  description: "Portfolio of Hansanie Neththasinghe, a passionate Software Engineering undergraduate specializing in full-stack development.",
+  description: "Portfolio of Hansanie Neththasinghe, a passionate Software Engineering graduate specializing in full-stack development.",
 };
 
 export default function RootLayout({

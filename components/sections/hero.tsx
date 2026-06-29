@@ -103,7 +103,7 @@ curl -X POST \\
               <span className="animate-pulse text-indigo-500">|</span>
             </h1>
             <p className="text-base md:text-lg text-foreground/60 max-w-xl leading-relaxed">
-              Final-year Software Engineering undergraduate specializing in building clean, responsive web applications and secure scalable services. Experienced in the MERN stack, DevOps pipelines, and AWS cloud deployment.
+              Software Engineering graduate specializing in building clean, responsive web applications and secure scalable services. Experienced in the MERN stack, DevOps pipelines, and AWS cloud deployment.
             </p>
           </div>
 

@@ -95,7 +95,7 @@ export default function Home() {
                 <h3 className="font-semibold text-lg">Hansanie Neththasinghe</h3>
               </div>
               <p className="text-foreground/60 leading-relaxed">
-                Final-year Software Engineering undergraduate (graduating March 2026) with hands-on
+                Software Engineering graduate with hands-on
                 experience in full-stack web development, DevOps, and cloud technologies. Self-motivated,
                 eager to tackle real-world challenges, and currently seeking an Associate Software Engineer role.
               </p>

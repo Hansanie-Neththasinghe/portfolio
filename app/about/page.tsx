@@ -62,7 +62,7 @@ export default function AboutPage() {
           transition={{ delay: 0.2 }}
           className="text-foreground/60 text-lg leading-relaxed"
         >
-          Passionate, final-year Software Engineering undergraduate (awaiting graduation in March 2026) with industry experience, committed to writing clean, maintainable, and high-performance code.
+          Passionate Software Engineering graduate with industry experience, committed to writing clean, maintainable, and high-performance code.
         </motion.p>
       </div>
 
