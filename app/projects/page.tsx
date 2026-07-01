@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Code, BookOpen } from "lucide-react";
 import Link from "next/link";
+import { ProjectImageGallery } from "@/components/ui/project-image-gallery";
 
 interface Project {
   title: string;
@@ -17,15 +18,54 @@ interface Project {
   codeUrl: string;
   demoUrl: string;
   publicationUrl?: string;
+  imageUrl?: string;
+  images?: string[];
 }
 
 const projects: Project[] = [
+  {
+    title: "Portfolio - Hiranya Thathsarani",
+    description: "A sleek, responsive personal portfolio website crafted to showcase professional experience, projects, and technical skills. Built for optimal performance and a seamless user experience.",
+    tags: ["Next.js", "Tailwind CSS", "Client Project"],
+    categories: ["Web", "Client"],
+    codeUrl: "#",
+    demoUrl: "https://hiranya-neththasinghe.netlify.app/",
+    imageUrl: "/images/4.png"
+  },
+  {
+    title: "Paragon Plant Nursery & Landscaping",
+    description: "A comprehensive digital storefront for a plant nursery and landscaping service. Features a beautifully structured product catalog and integrated contact forms for seamless customer inquiries.",
+    tags: ["Next.js", "Resend", "Client Project"],
+    categories: ["Web", "Client"],
+    codeUrl: "#",
+    demoUrl: "https://paragonplantnursery.com/",
+    imageUrl: "/images/3.png"
+  },
+  {
+    title: "RV Home Stay",
+    description: "An inviting, user-friendly platform designed for booking homestay accommodations. Highlights property features and amenities with a clean, modern interface to streamline reservations.",
+    tags: ["Next.js", "Tailwind CSS", "Client Project"],
+    categories: ["Web", "Client"],
+    codeUrl: "#",
+    demoUrl: "https://rvhomestays.com/",
+    imageUrl: "/images/2.png"
+  },
+  {
+    title: "Misty Tuk Tours",
+    description: "A dynamic and engaging landing page for a local tour operator. Features smooth scroll animations and immersive visuals to highlight customized travel packages and local experiences.",
+    tags: ["Next.js", "GSAP", "Client Project"],
+    categories: ["Web", "Client"],
+    codeUrl: "#",
+    demoUrl: "#",
+    images: ["/images/5.png", "/images/6.png"]
+  },
   {
     title: "Punchi-Pasala",
     description: "An interactive educational web application designed to identify learning difficulties of Deaf and Mute students in Sri Lanka. Features guided sign language instructions and webcam inputs identified by ML models.",
     tags: ["React.js", "Node.js", "Python", "Tensorflow", "AWS"],
     categories: ["Web", "ML / Research"],
     highlight: "Research Project",
+    imageUrl: "/images/1.png",
     codeUrl: "https://github.com/KCGSPerera/R25-009",
     demoUrl: "https://hansanie-neththasinghe.github.io/punchi-pasala/",
     publicationUrl: "https://www.researchgate.net/publication/401232125_Identify_Dyscalculia_Dysgraphia_Learning_Disabilities_in_Deaf_and_Mute_Primary_Students_and_Help_to_Improve_Learning_Abilities",
@@ -80,7 +120,7 @@ const projects: Project[] = [
   }
 ];
 
-const categories = ["All", "Web", "Mobile", "ML / Research", "DevOps"];
+const categories = ["All", "Client", "Web", "Mobile", "ML / Research", "DevOps"];
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState("All");
@@ -148,10 +188,16 @@ export default function ProjectsPage() {
               transition={{ duration: 0.3 }}
             >
               <Card className="flex flex-col h-full border-border bg-card/60 backdrop-blur-sm hover:border-indigo-500/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
-                {/* Visual Accent header */}
-                <div className="h-2 bg-gradient-to-r from-indigo-500 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Cover Image(s) */}
+                <ProjectImageGallery 
+                  images={project.images || (project.imageUrl ? [project.imageUrl] : [])} 
+                  title={project.title} 
+                />
                 
-                <CardHeader className="pb-3">
+                {/* Visual Accent header */}
+                <div className="h-1 bg-gradient-to-r from-indigo-500 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <CardHeader className="pb-3 pt-5">
                   <div className="flex justify-between items-start gap-2">
                     <CardTitle className="text-lg leading-snug group-hover:text-indigo-500 transition-colors duration-200">{project.title}</CardTitle>
                     {project.highlight && (
@@ -163,14 +209,14 @@ export default function ProjectsPage() {
                 </CardHeader>
                 
                 <CardContent className="flex-grow space-y-4 pb-4">
-                  <CardDescription className="text-xs text-foreground/60 leading-relaxed min-h-[60px]">
+                  <CardDescription className="text-xs text-foreground/70 leading-relaxed min-h-[60px]">
                     {project.description}
                   </CardDescription>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-muted/80 text-foreground/70 border border-border"
+                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20"
                       >
                         {tag}
                       </span>

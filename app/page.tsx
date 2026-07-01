@@ -4,6 +4,7 @@ import Hero from "@/components/sections/hero";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Briefcase, Code2, Database, Layout, Server, Smartphone, Terminal, User, GraduationCap, ExternalLink, Github, BookOpen } from "lucide-react";
+import { ProjectImageGallery } from "@/components/ui/project-image-gallery";
 
 // ── Mini data (mirrors the full pages) ──────────────────────────────────────
 
@@ -13,17 +14,32 @@ const featuredProjects = [
     description: "Interactive educational web app for Deaf & Mute students using ML-powered sign language recognition.",
     tags: ["React.js", "Node.js", "Python", "TensorFlow", "AWS"],
     highlight: "Research Project",
+    imageUrl: "/images/1.png",
     publicationUrl: "https://www.researchgate.net/publication/401232125_Identify_Dyscalculia_Dysgraphia_Learning_Disabilities_in_Deaf_and_Mute_Primary_Students_and_Help_to_Improve_Learning_Abilities",
   },
   {
-    title: "EV Charging Station Booking",
-    description: "Centralized web & mobile booking platform with Google Maps integration.",
-    tags: ["C#", "React", "Android", "Google Maps"],
+    title: "Portfolio - Hiranya Thathsarani",
+    description: "A sleek, responsive personal portfolio website crafted to showcase professional experience, projects, and technical skills. Built for optimal performance and a seamless user experience.",
+    tags: ["Next.js", "Tailwind CSS", "Client Project"],
+    imageUrl: "/images/4.png"
   },
   {
-    title: "E-Commerce Backend",
-    description: "Microservices architecture with automated CI/CD pipelines and cloud deployment.",
-    tags: ["Node.js", "Docker", "AWS ECS", "CI/CD"],
+    title: "Paragon Plant Nursery & Landscaping",
+    description: "A comprehensive digital storefront for a plant nursery and landscaping service. Features a beautifully structured product catalog and integrated contact forms for seamless customer inquiries.",
+    tags: ["Next.js", "Resend", "Client Project"],
+    imageUrl: "/images/3.png"
+  },
+  {
+    title: "RV Home Stay",
+    description: "An inviting, user-friendly platform designed for booking homestay accommodations. Highlights property features and amenities with a clean, modern interface to streamline reservations.",
+    tags: ["Next.js", "Tailwind CSS", "Client Project"],
+    imageUrl: "/images/2.png"
+  },
+  {
+    title: "Misty Tuk Tours",
+    description: "A dynamic and engaging landing page for a local tour operator. Features smooth scroll animations and immersive visuals to highlight customized travel packages and local experiences.",
+    tags: ["Next.js", "GSAP", "Client Project"],
+    images: ["/images/5.png", "/images/6.png"]
   },
 ];
 
@@ -231,42 +247,50 @@ export default function Home() {
             {featuredProjects.map((project, i) => (
               <div
                 key={i}
-                className="group rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 flex flex-col gap-4 hover:border-indigo-500/40 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300"
+                className="group rounded-2xl border border-border bg-card/60 backdrop-blur-sm flex flex-col gap-4 hover:border-indigo-500/40 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300 overflow-hidden"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-foreground leading-tight">{project.title}</h3>
-                  {project.highlight && (
-                    <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
-                      {project.highlight}
-                    </span>
+                {/* Cover Image(s) */}
+                <ProjectImageGallery 
+                  images={project.images || (project.imageUrl ? [project.imageUrl] : [])} 
+                  title={project.title} 
+                />
+                
+                <div className="p-6 pt-2 flex flex-col h-full gap-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-semibold text-foreground leading-tight">{project.title}</h3>
+                    {project.highlight && (
+                      <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
+                        {project.highlight}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-foreground/70 leading-relaxed flex-1">{project.description}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-400/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Optional Publication Button */}
+                  {project.publicationUrl && (
+                    <div className="pt-1">
+                      <Link href={project.publicationUrl} target="_blank" className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-colors">
+                        <BookOpen className="h-3.5 w-3.5" /> Publication
+                      </Link>
+                    </div>
                   )}
-                </div>
-                <p className="text-sm text-foreground/60 leading-relaxed flex-1">{project.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-400/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                {/* Optional Publication Button */}
-                {project.publicationUrl && (
-                  <div className="pt-1">
-                    <Link href={project.publicationUrl} target="_blank" className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-colors">
-                      <BookOpen className="h-3.5 w-3.5" /> Publication
+                  <div className="flex gap-2 pt-1">
+                    <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-border text-xs font-medium text-foreground/60 hover:border-indigo-500/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                      <Github className="h-3.5 w-3.5" /> Code
+                    </Link>
+                    <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 text-xs font-medium text-white hover:opacity-90 transition-opacity">
+                      <ExternalLink className="h-3.5 w-3.5" /> Demo
                     </Link>
                   </div>
-                )}
-                <div className="flex gap-2 pt-1">
-                  <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-border text-xs font-medium text-foreground/60 hover:border-indigo-500/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                    <Github className="h-3.5 w-3.5" /> Code
-                  </Link>
-                  <Link href="/projects" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 text-xs font-medium text-white hover:opacity-90 transition-opacity">
-                    <ExternalLink className="h-3.5 w-3.5" /> Demo
-                  </Link>
                 </div>
               </div>
             ))}
